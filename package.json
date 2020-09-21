@@ -1,8 +1,8 @@
 {
-  "name": "sushiswap-info",
+  "name": "tacoswap-info",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sushiswap.vision",
+  "homepage": "https://tacoswap.vision",
   "dependencies": {
     "@popperjs/core": "^2.4.2",
     "@reach/portal": "^0.10.3",

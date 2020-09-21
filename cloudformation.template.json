@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "sushiswap.vision site",
+  "Description": "tacoswap.vision site",
   "Outputs": {
     "DeploymentAccessKeyId": {
       "Description": "Access key ID for deploying to the S3 bucket",
@@ -11,10 +11,7 @@
     "DeploymentSecretAccessKey": {
       "Description": "Secret access key for deploying to the S3 bucket",
       "Value": {
-        "Fn::GetAtt": [
-          "DeploymentUserAccessKey",
-          "SecretAccessKey"
-        ]
+        "Fn::GetAtt": ["DeploymentUserAccessKey", "SecretAccessKey"]
       }
     }
   },
@@ -31,11 +28,7 @@
                 {
                   "Sid": "1",
                   "Effect": "Allow",
-                  "Action": [
-                    "s3:PutObject",
-                    "s3:GetObject",
-                    "s3:ListBucket"
-                  ],
+                  "Action": ["s3:PutObject", "s3:GetObject", "s3:ListBucket"],
                   "Resource": [
                     {
                       "Fn::Join": [
@@ -82,12 +75,12 @@
       "Type": "AWS::CertificateManager::Certificate",
       "Description": "The certificate used to secure the CloudFront distribution",
       "Properties": {
-        "DomainName": "sushiswap.vision",
+        "DomainName": "tacoswap.vision",
         "ValidationMethod": "DNS",
         "Tags": [
           {
             "Key": "Name",
-            "Value": "sushiswap.vision"
+            "Value": "tacoswap.vision"
           },
           {
             "Key": "Stack",
@@ -151,30 +144,21 @@
                   ]
                 }
               },
-              "Action": [
-                "s3:GetObject",
-                "s3:ListBucket"
-              ],
+              "Action": ["s3:GetObject", "s3:ListBucket"],
               "Resource": [
                 {
                   "Fn::Join": [
                     "",
                     [
                       {
-                        "Fn::GetAtt": [
-                          "AssetsBucket",
-                          "Arn"
-                        ]
+                        "Fn::GetAtt": ["AssetsBucket", "Arn"]
                       },
                       "/*"
                     ]
                   ]
                 },
                 {
-                  "Fn::GetAtt": [
-                    "AssetsBucket",
-                    "Arn"
-                  ]
+                  "Fn::GetAtt": ["AssetsBucket", "Arn"]
                 }
               ]
             },
@@ -183,10 +167,7 @@
               "Effect": "Deny",
               "NotPrincipal": {
                 "AWS": {
-                  "Fn::GetAtt": [
-                    "DeploymentUser",
-                    "Arn"
-                  ]
+                  "Fn::GetAtt": ["DeploymentUser", "Arn"]
                 }
               },
               "Action": "s3:PutObject",
@@ -195,10 +176,7 @@
                   "",
                   [
                     {
-                      "Fn::GetAtt": [
-                        "AssetsBucket",
-                        "Arn"
-                      ]
+                      "Fn::GetAtt": ["AssetsBucket", "Arn"]
                     },
                     "/*"
                   ]
@@ -241,20 +219,15 @@
               "ResponsePagePath": "/"
             }
           ],
-          "Comment": "sushiswap.vision",
+          "Comment": "tacoswap.vision",
           "Enabled": true,
-          "Aliases": [
-            "sushiswap.vision"
-          ],
+          "Aliases": ["tacoswap.vision"],
           "DefaultRootObject": "index.html",
           "HttpVersion": "http2",
           "Origins": [
             {
               "DomainName": {
-                "Fn::GetAtt": [
-                  "AssetsBucket",
-                  "DomainName"
-                ]
+                "Fn::GetAtt": ["AssetsBucket", "DomainName"]
               },
               "Id": "assets-bucket",
               "S3OriginConfig": {
@@ -281,10 +254,7 @@
           },
           "DefaultCacheBehavior": {
             "Compress": true,
-            "AllowedMethods": [
-              "GET",
-              "HEAD"
-            ],
+            "AllowedMethods": ["GET", "HEAD"],
             "ForwardedValues": {
               "QueryString": false
             },

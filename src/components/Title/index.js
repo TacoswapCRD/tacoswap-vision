@@ -5,8 +5,6 @@ import styled from 'styled-components'
 import { Flex } from 'rebass'
 import Link from '../Link'
 import { RowFixed } from '../Row'
-import Logo from '../../assets/logo_white.svg'
-import Wordmark from '../../assets/wordmark_white.svg'
 
 const TitleWrapper = styled.div`
   text-decoration: none;
@@ -18,7 +16,15 @@ const TitleWrapper = styled.div`
   z-index: 10;
 `
 
+const LogoText = styled.div`
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 12px;
+`
+
 const UniIcon = styled(Link)`
+  font-size: 18px;
+  letter-spacing: -9px;
   transition: transform 0.3s ease;
   :hover {
     transform: rotate(-5deg);
@@ -33,9 +39,11 @@ export default function Title() {
       <Flex alignItems="center">
         <RowFixed>
           <UniIcon id="link" onClick={() => history.push('/')}>
-            <img width={'24px'} src={Logo} alt="logo" />
+            <span role="img" aria-label="Taco Logo">
+              🌮🌮
+            </span>
           </UniIcon>
-          <img width={'84px'} style={{ marginLeft: '8px', marginTop: '0px' }} src={Wordmark} alt="logo" />
+          <LogoText>TacoSwap</LogoText>
         </RowFixed>
       </Flex>
     </TitleWrapper>
